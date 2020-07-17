@@ -20,15 +20,13 @@ class ReposActivity : AppCompatActivity() {
     lateinit var factory: ReposViewModelFactory
     private val viewModel: ReposViewModel by viewModels { factory }
 
-    private lateinit var reposRepository: ReposRepository
-
     private lateinit var repos: RecyclerView
     private lateinit var reposAdapter: ReposAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_repos)
-        appComponent.inject(this)
+        appComponent.reposSubcomponent().Build().inject(this)
 
         repos = findViewById(R.id.repos)
         repos.layoutManager = LinearLayoutManager(this)

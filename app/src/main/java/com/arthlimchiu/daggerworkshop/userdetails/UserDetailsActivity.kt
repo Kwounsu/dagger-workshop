@@ -16,21 +16,15 @@ import javax.inject.Inject
 class UserDetailsActivity : AppCompatActivity() {
     @Inject
     lateinit var factory: UserDetailsViewModelFactory
-
-    private lateinit var retrofit: Retrofit
-    private lateinit var api: Api
-
-    private lateinit var userRepository: UserRepository
+    private val viewModel: UserDetailsViewModel by viewModels { factory }
 
     private lateinit var fullName: TextView
     private lateinit var numOfRepos: TextView
 
-    private val viewModel: UserDetailsViewModel by viewModels { factory }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_details)
-        appComponent.inject(this)
+        appComponent.userDetailsSubcomponent().Build().inject(this)
 
         fullName = findViewById(R.id.full_name)
         numOfRepos = findViewById(R.id.num_of_repos)

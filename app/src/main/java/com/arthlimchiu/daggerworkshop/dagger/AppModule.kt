@@ -9,7 +9,7 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
-@Module
+@Module(subcomponents = [ReposSubcomponent::class, UserDetailsSubcomponent::class])
 class AppModule {
     @Provides
     @Singleton
