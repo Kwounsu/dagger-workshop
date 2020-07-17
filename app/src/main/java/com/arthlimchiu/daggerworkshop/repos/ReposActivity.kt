@@ -12,6 +12,7 @@ import com.arthlimchiu.daggerworkshop.Api
 import com.arthlimchiu.daggerworkshop.R
 import com.arthlimchiu.daggerworkshop.appComponent
 import com.arthlimchiu.daggerworkshop.userdetails.UserDetailsViewModel
+import dagger.android.AndroidInjection
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
@@ -29,7 +30,7 @@ class ReposActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_repos)
 
-        appComponent.reposSubcomponent().build().inject(this)
+        AndroidInjection.inject(this)
 
         repos = findViewById(R.id.repos)
         repos.layoutManager = LinearLayoutManager(this)
