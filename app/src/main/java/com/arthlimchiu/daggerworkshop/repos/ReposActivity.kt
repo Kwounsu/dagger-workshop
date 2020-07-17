@@ -21,7 +21,8 @@ class ReposActivity : AppCompatActivity() {
     @Inject
     lateinit var factory: ReposViewModelFactory
 
-    private lateinit var viewModel: ReposViewModel
+//    private lateinit var viewModel: ReposViewModel
+    private val viewModel: ReposViewModel by viewModels { factory }
 
     private lateinit var repos: RecyclerView
     private lateinit var reposAdapter: ReposAdapter
@@ -37,7 +38,7 @@ class ReposActivity : AppCompatActivity() {
         reposAdapter = ReposAdapter(listOf())
         repos.adapter = reposAdapter
 
-        viewModel = ViewModelProvider(this, factory).get(ReposViewModel::class.java)
+//        viewModel = ViewModelProvider(this, factory).get(ReposViewModel::class.java)
 
         viewModel.repos.observe(this, Observer { repositories ->
             reposAdapter.updateRepos(repositories)
