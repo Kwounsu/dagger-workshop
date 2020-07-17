@@ -5,8 +5,9 @@ import com.arthlimchiu.daggerworkshop.Api
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class UserRepositoryImpl(private val api: Api) : UserRepository {
+class UserRepositoryImpl (private val api: Api) : UserRepository {
     private var index = 0
 
     override fun getUser(username: String, onSuccess: (user: User) -> Unit, onFailure: (t: Throwable) -> Unit) {

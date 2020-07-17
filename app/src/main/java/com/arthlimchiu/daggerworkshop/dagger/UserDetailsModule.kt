@@ -10,7 +10,7 @@ import dagger.Provides
 class UserDetailsModule {
     @Provides
     @ActivityScope
-    fun providesUserRepository(api:Api): UserRepository {
+    fun providesUserRepository(api: Api): UserRepository {
         return UserRepositoryImpl(api)
     }
 }

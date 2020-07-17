@@ -6,9 +6,10 @@ import dagger.Subcomponent
 @ActivityScope
 @Subcomponent(modules = [UserDetailsModule::class])
 interface UserDetailsSubcomponent {
+
     @Subcomponent.Builder
     interface Builder {
-        fun Build(): UserDetailsSubcomponent
+        fun build(): UserDetailsSubcomponent
     }
 
     fun inject(activity: UserDetailsActivity)

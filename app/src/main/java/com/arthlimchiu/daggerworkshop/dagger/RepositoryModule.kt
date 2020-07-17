@@ -1,6 +1,10 @@
 package com.arthlimchiu.daggerworkshop.dagger
 
 import com.arthlimchiu.daggerworkshop.Api
+import com.arthlimchiu.daggerworkshop.repos.ReposRepository
+import com.arthlimchiu.daggerworkshop.repos.ReposRepositoryImpl
+import com.arthlimchiu.daggerworkshop.userdetails.UserRepository
+import com.arthlimchiu.daggerworkshop.userdetails.UserRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -11,16 +15,13 @@ import javax.inject.Singleton
 class RepositoryModule {
     @Provides
     @Singleton
-    fun providesRetrofit():Retrofit {
-        return Retrofit.Builder()
-            .baseUrl("https://api.github.com")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+    fun providesUserRepository(api:Api): UserRepository {
+        return UserRepositoryImpl(api)
     }
 
     @Provides
     @Singleton
-    fun providesApi(retrofit: Retrofit): Api {
-        return retrofit.create(Api::class.java)
+    fun providesReposRepository(api:Api): ReposRepository {
+        return ReposRepositoryImpl(api)
     }
 }

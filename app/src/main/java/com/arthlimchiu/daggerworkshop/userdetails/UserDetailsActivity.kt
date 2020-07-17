@@ -5,6 +5,7 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.arthlimchiu.daggerworkshop.Api
 import com.arthlimchiu.daggerworkshop.R
@@ -16,7 +17,8 @@ import javax.inject.Inject
 class UserDetailsActivity : AppCompatActivity() {
     @Inject
     lateinit var factory: UserDetailsViewModelFactory
-    private val viewModel: UserDetailsViewModel by viewModels { factory }
+
+    private lateinit var viewModel: UserDetailsViewModel
 
     private lateinit var fullName: TextView
     private lateinit var numOfRepos: TextView
@@ -24,10 +26,12 @@ class UserDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_details)
-        appComponent.userDetailsSubcomponent().Build().inject(this)
+        appComponent.userDetailsSubcomponent().build().inject(this)
 
         fullName = findViewById(R.id.full_name)
         numOfRepos = findViewById(R.id.num_of_repos)
+
+        viewModel = ViewModelProvider(this, factory).get(UserDetailsViewModel::class.java)
 
         viewModel.user.observe(this, Observer { user ->
             fullName.text = user.name

@@ -4,8 +4,9 @@ import com.arthlimchiu.daggerworkshop.Api
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class ReposRepositoryImpl(private val api: Api) : ReposRepository {
+class ReposRepositoryImpl (private val api: Api) : ReposRepository {
 
     override fun getRepos(
         username: String,

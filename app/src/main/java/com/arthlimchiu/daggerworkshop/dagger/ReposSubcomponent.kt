@@ -6,9 +6,10 @@ import dagger.Subcomponent
 @ActivityScope
 @Subcomponent(modules = [ReposModule::class])
 interface ReposSubcomponent {
+
     @Subcomponent.Builder
     interface Builder {
-        fun Build(): ReposSubcomponent
+        fun build(): ReposSubcomponent
     }
 
     fun inject(activity: ReposActivity)
